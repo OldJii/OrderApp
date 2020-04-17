@@ -35,7 +35,6 @@ import com.oldjii.ordering.base.BaseFragment;
 import com.oldjii.ordering.bmob.BannerData;
 import com.oldjii.ordering.bmob.ShopBean;
 import com.oldjii.ordering.confige.MySharePreference;
-import com.oldjii.ordering.update.UpGradeUtil;
 import com.oldjii.ordering.utils.CustomCodeUtils;
 import com.oldjii.ordering.utils.CustomListView;
 import com.oldjii.ordering.utils.GlideImageLoader;
@@ -89,9 +88,7 @@ public class FragmentHome extends BaseFragment {
         init();
         //notification通知授予
         NotificationUtils.checkNotificationIsOpen(getActivity());
-        //update app
-        UpGradeUtil upGradeUtil = new UpGradeUtil(getActivity());
-        upGradeUtil.checkUpdate(false);
+
         return view;
     }
 
