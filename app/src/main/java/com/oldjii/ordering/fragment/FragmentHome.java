@@ -35,10 +35,8 @@ import com.oldjii.ordering.base.BaseFragment;
 import com.oldjii.ordering.bmob.BannerData;
 import com.oldjii.ordering.bmob.ShopBean;
 import com.oldjii.ordering.confige.MySharePreference;
-import com.oldjii.ordering.utils.CustomCodeUtils;
 import com.oldjii.ordering.utils.CustomListView;
 import com.oldjii.ordering.utils.GlideImageLoader;
-import com.oldjii.ordering.utils.NotificationUtils;
 import com.oldjii.ordering.utils.ToasUtils;
 import com.oldjii.ordering.utils.UIUtils;
 import com.oldjii.ordering.views.CustomeScrollView;
@@ -86,8 +84,6 @@ public class FragmentHome extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
         init();
-        //notification通知授予
-        NotificationUtils.checkNotificationIsOpen(getActivity());
 
         return view;
     }
@@ -257,88 +253,5 @@ public class FragmentHome extends BaseFragment {
                 }
             });
         }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CustomCodeUtils.OPEN_CODE_SCAN) {
-            if (resultCode == CustomCodeUtils.TYPE_XC_RETURN_CODE) {
-                //相册返回
-                String result = data.getStringExtra(CodeUtils.RESULT_STRING);
-                showCodeResultDialog(result);
-            } else if (resultCode != CustomCodeUtils.TYPE_XC_RETURN_CODE) {
-                //直接扫描返回
-                if (null != data) {
-                    Bundle bundle = data.getExtras();
-                    if (bundle == null) {
-                        return;
-                    }
-                    if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
-                        String result = bundle.getString(CodeUtils.RESULT_STRING);
-                        showCodeResultDialog(result);
-                    } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
-                        ToasUtils.showToastMessage("抱歉!请重试");
-                    }
-                }
-            }
-        }
-    }
-
-    private void showCodeResultDialog(String result) {
-        if (isHttpUrl(result)) {
-            urlTypeDialog(result);
-        } else {
-            textTypeDialog(result);
-        }
-    }
-
-    private void urlTypeDialog(String result) {
-        SelectDialog.show(getActivity(), "扫描结果", result, "游览器打开", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Uri uri = Uri.parse(result);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
-        }, "复制链接", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                copy(result);
-            }
-        }).setCanCancel(true);
-    }
-
-    private void textTypeDialog(String result) {
-        SelectDialog.show(getActivity(), "扫描结果", result, "复制文本", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                copy(result);
-            }
-        }, "关闭弹框", null).setCanCancel(true);
-    }
-
-    private void copy(String content) {
-        ClipboardManager copy = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-        copy.setText(content);
-        ToasUtils.showToastMessage("复制成功");
-    }
-
-    /**
-     * 判断字符串是否为URL
-     *
-     * @param urls 字符串
-     * @return true:是URL、false:不是URL
-     */
-    public static boolean isHttpUrl(String urls) {
-        boolean isurl = false;
-        String regex = "(((https|http)?://)?([a-z0-9]+[.])|(www.))" + "\\w+[.|\\/]([a-z0-9]{0,})?[[.]([a-z0-9]{0,})]+((/[\\S&&[^,;\u4E00-\u9FA5]]+)+)?([.][a-z0-9]{0,}+|/?)";//设置正则表达式
-        Pattern pat = Pattern.compile(regex.trim());//比对
-        Matcher mat = pat.matcher(urls.trim());
-        isurl = mat.matches();//判断是否匹配
-        if (isurl) {
-            isurl = true;
-        }
-        return isurl;
     }
 }

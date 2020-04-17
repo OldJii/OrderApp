@@ -12,7 +12,6 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.oldjii.ordering.bmob.BannerData;
 import com.oldjii.ordering.bmob.UpdateBean;
 import com.oldjii.ordering.utils.NetworkUtil;
-import com.oldjii.ordering.utils.NotificationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,9 +69,6 @@ public class MyApplication extends MultiDexApplication {
         DialogSettings.dialogTitleTextInfo = new TextInfo().setBold(false).setFontSize(15);
         DialogSettings.dialogButtonTextInfo = new TextInfo().setBold(false).setFontSize(15);
         DialogSettings.dialogOkButtonTextInfo = new TextInfo().setBold(false).setFontSize(15);
-
-        //适配8.0通知栏，注册创建Channel
-        NotificationUtils.registerNotificationConfig();
 
         ClassicsFooter.REFRESH_FOOTER_NOTHING = "已经木有内容啦";
 
