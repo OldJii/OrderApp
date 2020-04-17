@@ -31,10 +31,6 @@ public class Constant {
     public static final String VIDEO = "video";
     public static final String BJ_COLOR = "bj_color";
 
-    //TODO：由于自己没有企业资质，这里使用朋友的微信开发平台uid
-    public static final String WX_APPID = "wx046c4024ed2eca48";
-    public static final String WX_APPSECRET = "5e6472cded17a68572b1d0775eddb890";
-    public static final String TENCENT_APP_ID = "1109011627";
     /**
      * 订单状态
      * {"全部","待付款","待使用","待评价","退款/售后"}

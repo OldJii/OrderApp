@@ -119,38 +119,6 @@ public class AboutOurActivity extends BaseActivity {
         }, "取消", null).setCanCancel(true);
     }
 
-    public void openQQ() {
-        // 跳转之前，可以先判断手机是否安装QQ
-        if (isQQClientAvailable(this)) {
-            // 跳转到客服的QQ
-            String url = "mqqwpa://im/chat?chat_type=wpa&uin=1356798719";
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            // 跳转前先判断Uri是否存在，如果打开一个不存在的Uri，App可能会崩溃
-            if (isValidIntent(this, intent)) {
-                startActivity(intent);
-            }
-        } else {
-            ToasUtils.showToastMessage("你手机还没有安装QQ，请安装后在试");
-        }
-    }
-
-    /**
-     * 判断 用户是否安装QQ客户端
-     */
-    public static boolean isQQClientAvailable(Context context) {
-        final PackageManager packageManager = context.getPackageManager();
-        List<PackageInfo> pinfo = packageManager.getInstalledPackages(0);
-        if (pinfo != null) {
-            for (int i = 0; i < pinfo.size(); i++) {
-                String pn = pinfo.get(i).packageName;
-                if (pn.equalsIgnoreCase("com.tencent.qqlite") || pn.equalsIgnoreCase("com.tencent.mobileqq")) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     /**
      * 判断 Uri是否有效
      */

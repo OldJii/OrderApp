@@ -174,9 +174,5 @@ dependencies {
     //二维码
     implementation 'cn.yipianfengye.android:zxing-library:2.2'
 
-    //微信支付/登录sdk
-    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.6'
-    //腾讯QQ登录、支付、社交sdk
-    implementation files('libs/open_sdk_r6008_lite.jar')
 }
 

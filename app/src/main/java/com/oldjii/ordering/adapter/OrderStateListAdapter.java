@@ -193,7 +193,6 @@ public class OrderStateListAdapter extends CommonAdapter<OrderBean> {
         if (hideBotton) helper.getView(R.id.id_bottom_view).setVisibility(View.GONE);
 
         CustomListView itemRecycleView = helper.getView(R.id.id_list);
-        //https://www.cnblogs.com/LT5505/p/5972999.html
         itemRecycleView.setFocusable(false);
         itemRecycleView.setClickable(false);
         itemRecycleView.setPressed(false);

@@ -159,32 +159,7 @@
         <activity
             android:name="com.oldjii.ordering.activity.ShopReceiveOrderDetailActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.oldjii.ordering.activity.BindMobileActivity"
-            android:screenOrientation="portrait" />
 
-        <!--微信登陆/分享activity-->
-        <activity
-            android:name="com.oldjii.ordering.wxapi.WXEntryActivity"
-            android:exported="true" />
-        <!--腾讯qq sdk相关配置-->
-        <activity
-            android:name="com.tencent.tauth.AuthActivity"
-            android:launchMode="singleTask"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="1109011627" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.tencent.connect.common.AssistActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!--相册配置-->
         <!--@style/PhotoTheme是图片选择界面样式，文档有提供，不要漏掉添加到values/styles里-->
         <activity

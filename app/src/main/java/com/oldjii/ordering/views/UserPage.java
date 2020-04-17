@@ -35,7 +35,6 @@ import com.oldjii.ordering.confige.MySharePreference;
 import com.oldjii.ordering.fragment.FragmentMine;
 import com.oldjii.ordering.utils.CustomListView;
 import com.oldjii.ordering.utils.UIUtils;
-import com.tencent.tauth.Tencent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,13 +111,7 @@ public class UserPage extends FrameLayout {
         MySharePreference.setCurrentLoginState(Constant.STATE_UN_LOING);
         BmobUser.logOut();
         FragmentMine.initState();
-        //TODO：先不管第三方登录的地方，之后再统一处理
 //        finish();
-        //若为qq登陆状态，QQ注销接口
-//        Tencent mTencent = Tencent.createInstance(Constant.TENCENT_APP_ID, this.getApplicationContext());
-//        if (mTencent!=null && mTencent.isSessionValid()){
-//            mTencent.logout(this);
-//        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

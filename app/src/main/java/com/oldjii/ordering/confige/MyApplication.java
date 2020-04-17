@@ -9,9 +9,6 @@ import com.kongzue.dialog.util.TextInfo;
 import com.kongzue.dialog.v2.DialogSettings;
 import com.lzy.okgo.OkGo;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.tencent.tauth.Tencent;
 import com.oldjii.ordering.bmob.BannerData;
 import com.oldjii.ordering.bmob.UpdateBean;
 import com.oldjii.ordering.utils.NetworkUtil;
@@ -41,7 +38,6 @@ public class MyApplication extends MultiDexApplication {
     private static Context context;
     private static Handler handler;
     private static int mainThreadId;
-    public static IWXAPI iwxapi;
 
     @Override
     public void onCreate() {
@@ -55,15 +51,6 @@ public class MyApplication extends MultiDexApplication {
         context = getApplicationContext();
         handler = new Handler();
         mainThreadId = android.os.Process.myTid();//获取当前线程id，主线程
-
-        //微信 注册APPID
-        iwxapi = WXAPIFactory.createWXAPI(context, Constant.WX_APPID, false);
-        // 将该app注册到微信
-        iwxapi.registerApp(Constant.WX_APPID);
-
-        // Tencent类是SDK的主要实现类，开发者可通过Tencent类访问腾讯开放的OpenAPI。
-        // 其中APP_ID是分配给第三方应用的appid，类型为String。
-        Tencent mTencent = Tencent.createInstance(Constant.TENCENT_APP_ID, this.getApplicationContext());
 
         /**
          * 必须在 Application 的 onCreate 方法中执行 BGASwipeBackHelper.init 来初始化滑动返回

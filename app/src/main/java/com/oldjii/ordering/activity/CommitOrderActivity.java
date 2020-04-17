@@ -1,7 +1,9 @@
 package com.oldjii.ordering.activity;
 
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -10,13 +12,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.base.bj.paysdk.domain.TrPayResult;
-import com.base.bj.paysdk.listener.PayResultListener;
 import com.base.bj.paysdk.utils.TrPay;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 import com.jaeger.library.StatusBarUtil;
+import com.kongzue.dialog.v2.SelectDialog;
 import com.oldjii.ordering.R;
 import com.oldjii.ordering.adapter.OrderListAdapter;
 import com.oldjii.ordering.base.BaseActivity;
@@ -27,6 +28,8 @@ import com.oldjii.ordering.bmob.OrderBean;
 import com.oldjii.ordering.bmob.ShopBean;
 import com.oldjii.ordering.bmob.UserBean;
 import com.oldjii.ordering.confige.Constant;
+import com.oldjii.ordering.confige.MySharePreference;
+import com.oldjii.ordering.fragment.FragmentMine;
 import com.oldjii.ordering.utils.CustomListView;
 import com.oldjii.ordering.utils.GlideUtils;
 import com.oldjii.ordering.utils.ToasUtils;
@@ -35,7 +38,6 @@ import com.oldjii.ordering.views.CircleImageView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -247,12 +249,7 @@ public class CommitOrderActivity extends BaseActivity {
      * 条件有限，这里仅做模拟支付
      */
     private void pay() {
-        //发起支付所需参数
-//        String userid = shopBean.getObjectId();//商户系统用户ID(如：trpay@52yszd.com，商户系统内唯一)
-//        String outtradeno = UUID.randomUUID() + "";//商户系统订单号(为便于演示，此处利用UUID生成模拟订单号，商户系统内唯一)
         String tradename = shopBean.name;//商品名称
-//        String backparams = "name=2&age=22";//商户系统回调参数
-//        String notifyurl = "http://101.200.13.92/notify/alipayTestNotify";//商户系统回调地址
         if (TextUtils.isEmpty(tradename)) {
             Toast.makeText(CommitOrderActivity.this, "请输入商品名称！", Toast.LENGTH_SHORT).show();
             return;
@@ -263,64 +260,41 @@ public class CommitOrderActivity extends BaseActivity {
             Toast.makeText(CommitOrderActivity.this, "金额不能小于1分！", Toast.LENGTH_SHORT).show();
             return;
         }
+        isPay();
+    }
 
-        orderPaySuccess();
-//        if (payType == Constant.PAY_ZFB) {
-//            /**
-//             * 发起支付宝支付调用
-//             */
-//            TrPay.getInstance(this).callAlipay(tradename, outtradeno, amount, backparams, notifyurl, userid, new PayResultListener() {
-//                /**
-//                 * 支付完成回调
-//                 * @param context      上下文
-//                 * @param outtradeno   商户系统订单号
-//                 * @param resultCode   支付状态(RESULT_CODE_SUCC：支付成功、RESULT_CODE_FAIL：支付失败)
-//                 * @param resultString 支付结果
-//                 * @param payType      支付类型（1：支付宝 2：微信）
-//                 * @param amount       支付金额
-//                 * @param tradename    商品名称
-//                 */
-//                @Override
-//                public void onPayFinish(Context context, String outtradeno, int resultCode, String resultString, int payType, Long amount, String tradename) {
-//                    if (resultCode == TrPayResult.RESULT_CODE_SUCC.getId()) {//1：支付成功回调
-////                        TrPay.getInstance((Activity) context).closePayView();//关闭快捷支付页面
-//                        //支付成功逻辑处理
-//                        orderPaySuccess();
-//                    } else if (resultCode == TrPayResult.RESULT_CODE_FAIL.getId()) {//2：支付失败回调
-//                        //支付失败逻辑处理
-//                        Toast.makeText(CommitOrderActivity.this, "订单创建成功，等待支付", Toast.LENGTH_LONG).show();
-//                        orderDetial();
-//                    }
-//                }
-//            });
-//        } else if (payType == Constant.PAY_WX) {
-//            /**
-//             * 发起微信支付调用
-//             */
-//            TrPay.getInstance(this).callWxPay(tradename, outtradeno, amount, backparams, notifyurl, userid, new PayResultListener() {
-//                /**
-//                 * 支付完成回调
-//                 * @param context      上下文
-//                 * @param outtradeno   商户系统订单号
-//                 * @param resultCode   支付状态(RESULT_CODE_SUCC：支付成功、RESULT_CODE_FAIL：支付失败)
-//                 * @param resultString 支付结果
-//                 * @param payType      支付类型（1：支付宝 2：微信）
-//                 * @param amount       支付金额
-//                 * @param tradename    商品名称
-//                 */
-//                @Override
-//                public void onPayFinish(Context context, String outtradeno, int resultCode, String resultString, int payType, Long amount, String tradename) {
-//                    if (resultCode == TrPayResult.RESULT_CODE_SUCC.getId()) {//1：支付成功回调
-////                        TrPay.getInstance((Activity) context).closePayView();//关闭快捷支付页面//支付成功逻辑处理
-//                        orderPaySuccess();
-//                    } else if (resultCode == TrPayResult.RESULT_CODE_FAIL.getId()) {//2：支付失败回调
-//                        //支付失败逻辑处理
-//                        Toast.makeText(CommitOrderActivity.this, "订单创建成功，等待支付", Toast.LENGTH_LONG).show();
-//                        orderDetial();
-//                    }
-//                }
-//            });
-//        }
+    private void isPay() {
+        SelectDialog.show(this, "提示", "确定要支付吗?", "确定", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                orderPaySuccess();
+            }
+        }, "取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                orderDetial();
+            }
+        });
+    }
+
+    //订单已创建，引导用户到订单详情页进行支付
+    private void orderDetial() {
+        //查询AppKeyBean表,获取支付所需的appkey
+        BmobQuery<AppKeyBean> query = new BmobQuery<>();
+        query.findObjects(new FindListener<AppKeyBean>() {
+            @Override
+            public void done(List<AppKeyBean> list, BmobException e) {
+                Intent intent = new Intent(CommitOrderActivity.this, OrderDetailActivity.class);
+                if (e == null && list != null && list.size() > 0) {
+                    intent.putExtra("appkey", list.get(0).appkey);//使用第一条记录的appkey
+                } else {
+                    intent.putExtra("appkey", "appkey");
+                }
+                intent.putExtra(Constant.OBJECTID, orderId);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -370,25 +344,6 @@ public class CommitOrderActivity extends BaseActivity {
                 } else {
                     ToasUtils.showToastMessage("更新失败：" + e.getMessage());
                 }
-            }
-        });
-    }
-
-    //订单已创建，引导用户到订单详情页进行支付
-    private void orderDetial() {
-        //查询AppKeyBean表,获取支付所需的appkey
-        BmobQuery<AppKeyBean> query = new BmobQuery<>();
-        query.findObjects(new FindListener<AppKeyBean>() {
-            @Override
-            public void done(List<AppKeyBean> list, BmobException e) {
-                Intent intent = new Intent(CommitOrderActivity.this, OrderDetailActivity.class);
-                if (e == null && list != null && list.size() > 0) {
-                    intent.putExtra("appkey", list.get(0).appkey);//使用第一条记录的appkey
-                } else {
-                    intent.putExtra("appkey", "appkey");
-                }
-                intent.putExtra(Constant.OBJECTID, orderId);
-                startActivity(intent);
             }
         });
     }

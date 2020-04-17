@@ -251,12 +251,7 @@ public class OrderDetailActivity extends BaseActivity {
      * 条件有限，这里仅做模拟支付
      */
     private void pay() {
-        //发起支付所需参数
-//        String userid = mShopBean.getObjectId();//商户系统用户ID(如：trpay@52yszd.com，商户系统内唯一)
-//        String outtradeno = UUID.randomUUID() + "";//商户系统订单号(为便于演示，此处利用UUID生成模拟订单号，商户系统内唯一)
         String tradename = mShopBean.name;//商品名称
-//        String backparams = "name=2&age=22";//商户系统回调参数
-//        String notifyurl = "http://101.200.13.92/notify/alipayTestNotify";//商户系统回调地址
         if (TextUtils.isEmpty(tradename)) {
             Toast.makeText(OrderDetailActivity.this, "请输入商品名称！", Toast.LENGTH_SHORT).show();
             return;
@@ -267,63 +262,7 @@ public class OrderDetailActivity extends BaseActivity {
             Toast.makeText(OrderDetailActivity.this, "金额不能小于1分！", Toast.LENGTH_SHORT).show();
             return;
         }
-
         orderPaySuccess();
-
-//        if (payType == Constant.PAY_ZFB) {
-//            /**
-//             * 发起支付宝支付调用
-//             */
-//            TrPay.getInstance(this).callAlipay(tradename, outtradeno, amount, backparams, notifyurl, userid, new PayResultListener() {
-//                /**
-//                 * 支付完成回调
-//                 * @param context      上下文
-//                 * @param outtradeno   商户系统订单号
-//                 * @param resultCode   支付状态(RESULT_CODE_SUCC：支付成功、RESULT_CODE_FAIL：支付失败)
-//                 * @param resultString 支付结果
-//                 * @param payType      支付类型（1：支付宝 2：微信）
-//                 * @param amount       支付金额
-//                 * @param tradename    商品名称
-//                 */
-//                @Override
-//                public void onPayFinish(Context context, String outtradeno, int resultCode, String resultString, int payType, Long amount, String tradename) {
-//                    if (resultCode == TrPayResult.RESULT_CODE_SUCC.getId()) {//1：支付成功回调
-////                        TrPay.getInstance((Activity) context).closePayView();//关闭快捷支付页面
-//                        //支付成功逻辑处理
-//                        orderPaySuccess();
-//                    } else if (resultCode == TrPayResult.RESULT_CODE_FAIL.getId()) {//2：支付失败回调
-//                        //支付失败逻辑处理
-//                        Toast.makeText(OrderDetailActivity.this, "支付取消", Toast.LENGTH_LONG).show();
-//                    }
-//                }
-//            });
-//        } else if (payType == Constant.PAY_WX) {
-//            /**
-//             * 发起微信支付调用
-//             */
-//            TrPay.getInstance(this).callWxPay(tradename, outtradeno, amount, backparams, notifyurl, userid, new PayResultListener() {
-//                /**
-//                 * 支付完成回调
-//                 * @param context      上下文
-//                 * @param outtradeno   商户系统订单号
-//                 * @param resultCode   支付状态(RESULT_CODE_SUCC：支付成功、RESULT_CODE_FAIL：支付失败)
-//                 * @param resultString 支付结果
-//                 * @param payType      支付类型（1：支付宝 2：微信）
-//                 * @param amount       支付金额
-//                 * @param tradename    商品名称
-//                 */
-//                @Override
-//                public void onPayFinish(Context context, String outtradeno, int resultCode, String resultString, int payType, Long amount, String tradename) {
-//                    if (resultCode == TrPayResult.RESULT_CODE_SUCC.getId()) {//1：支付成功回调
-////                        TrPay.getInstance((Activity) context).closePayView();//关闭快捷支付页面//支付成功逻辑处理
-//                        orderPaySuccess();
-//                    } else if (resultCode == TrPayResult.RESULT_CODE_FAIL.getId()) {//2：支付失败回调
-//                        //支付失败逻辑处理
-//                        Toast.makeText(OrderDetailActivity.this, "支付取消", Toast.LENGTH_LONG).show();
-//                    }
-//                }
-//            });
-//        }
     }
 
     /**
@@ -349,6 +288,9 @@ public class OrderDetailActivity extends BaseActivity {
 
     private int payType = Constant.PAY_WX;
 
+    /**
+     * 弹出底部交易方式选择弹窗
+     */
     private void shopPayBottomDailog() {
         List<String> list = new ArrayList<>();
         list.add("微信");
