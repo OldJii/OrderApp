@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.oldjii.ordering">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!--用于申请调用A-GPS模块-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!--用于申请获取蓝牙信息进行室内定位-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!--android 8.x apk安装权限,不需要动态申请（若否这不会到系统的安装界面）-->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <!--手机震动-->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- Required -->
+    <permission
+        android:name="com.doncheng.tianrun.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+    <!-- Required -->
+    <uses-permission android:name="com.doncheng.tianrun.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!--保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <application
+        android:name="com.oldjii.ordering.confige.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <!--高德appkey配置-->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="7128f16801cba4e04d2effa0a0ff3b05" />
+        <!--        页面初启动页面-->
+        <activity
+            android:name=".activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/StartTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.oldjii.ordering.activity.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name="com.oldjii.ordering.activity.UserLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.ShopLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.ShopRegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.PublishFoodActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.AddFoodCateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.ImageDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.FoodManageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.ShopFoodActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.UserRegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.UserInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.ReciveAddressListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.AddAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.OpinionFeedBackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.AboutOurActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.MyOrderStateListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.CommitOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.oldjii.ordering.activity.ShopInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.SearchShopActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.FoodDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.ShopMapAddressSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.PaySuccessActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.OrderDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.CommentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.oldjii.ordering.activity.ShopOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.UserCommentListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.ShopReceiveOrderDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.oldjii.ordering.activity.BindMobileActivity"
+            android:screenOrientation="portrait" />
+
+        <!--微信登陆/分享activity-->
+        <activity
+            android:name="com.oldjii.ordering.wxapi.WXEntryActivity"
+            android:exported="true" />
+        <!--腾讯qq sdk相关配置-->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="1109011627" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--相册配置-->
+        <!--@style/PhotoTheme是图片选择界面样式，文档有提供，不要漏掉添加到values/styles里-->
+        <activity
+            android:name="me.iwf.photopicker.PhotoPickerActivity"
+            android:theme="@style/PhotoTheme" />
+        <!-- android7.0文件访问配置 -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"
+                tools:replace="android:resource" />
+        </provider>
+        <provider
+            android:name="cn.bmob.v3.util.BmobContentProvider"
+            android:authorities="com.oldjii.ordering.BmobContentProvider"></provider>
+
+        <service android:name="com.oldjii.ordering.update.DownLoadService" />
+        <!--修复小米 MIX 9华为 系统版本为:9-->
+        <!--
+        在 Android 6.0 中，我们取消了对 Apache HTTP 客户端的支持。 从 Android 9 开始，默认情况下该内容库已从 bootclasspath 中移除且不可用于应用。
+        要继续使用 Apache HTTP 客户端，以 Android 9 及更高版本为目标的应用可以向其 AndroidManifest.xml的application节点下
+        https://blog.csdn.net/chinaboyliusir/article/details/82755193
+        -->
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+    </application>
+</manifest>
