@@ -132,10 +132,11 @@ public class ShopRegisterActivity extends BaseActivity {
             ToasUtils.showToastMessage("请输入正确的手机号码");
             return;
         }
-        if (addressBean == null) {
-            ToasUtils.showToastMessage("请选择商家地址");
-            return;
-        }
+//        todo: 暂时移除位置功能
+//        if (addressBean == null) {
+//            ToasUtils.showToastMessage("请选择商家地址");
+//            return;
+//        }
         if (TextUtils.isEmpty(pass)) {
             ToasUtils.showToastMessage("请输入密码");
             return;
@@ -151,7 +152,8 @@ public class ShopRegisterActivity extends BaseActivity {
         ShopBean shopBean = new ShopBean();
         shopBean.name = name;
         shopBean.tel = phone;
-        shopBean.address = addressBean.address;
+//        todo: 暂时移除位置功能
+//        shopBean.address = addressBean.address;
         shopBean.logo = logo;
         shopBean.score = String.valueOf(4);
         shopBean.distance = String.valueOf(500);
@@ -161,8 +163,9 @@ public class ShopRegisterActivity extends BaseActivity {
         shopBean.cateId = seleceCateId;
         shopBean.hot = "1000";//默认给100人气值
         //注:默认经纬度为成都
-        shopBean.lat = addressBean.lat;
-        shopBean.lng = addressBean.lng;
+//        todo: 暂时移除位置功能
+//        shopBean.lat = addressBean.lat;
+//        shopBean.lng = addressBean.lng;
 
         shopBean.save(new SaveListener<String>() {
             @Override

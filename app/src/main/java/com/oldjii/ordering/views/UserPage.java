@@ -29,6 +29,7 @@ import com.oldjii.ordering.activity.MainActivity;
 import com.oldjii.ordering.activity.ShopLoginActivity;
 import com.oldjii.ordering.adapter.ItemLvAdapter;
 import com.oldjii.ordering.base.ItemBean;
+import com.oldjii.ordering.bmob.ShopBean;
 import com.oldjii.ordering.bmob.UserBean;
 import com.oldjii.ordering.confige.Constant;
 import com.oldjii.ordering.confige.MySharePreference;
@@ -96,22 +97,27 @@ public class UserPage extends FrameLayout {
                     case 3:
                         loginCheck(AboutOurActivity.class);
                         break;
-                    //TODO：这个地方做测试，（退出登录）
                     case 4:
-                        unlogin();
+                        userLogout();
                         break;
                 }
             }
         });
     }
 
-    //TODO：这个地方做测试，（退出登录）
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void unlogin() {
-        MySharePreference.setCurrentLoginState(Constant.STATE_UN_LOING);
-        BmobUser.logOut();
-        FragmentMine.initState();
-//        finish();
+    /**
+     * 退出登录
+     */
+    private void userLogout() {
+        SelectDialog.show(mainActivity, "提示", "确定要退出登录吗?", "确定", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                MySharePreference.setCurrentLoginState(Constant.STATE_UN_LOING);
+                BmobUser.logOut();
+                FragmentMine.initState();
+            }
+        }).setCanCancel(true);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

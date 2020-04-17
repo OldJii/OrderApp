@@ -1,7 +1,7 @@
 package com.oldjii.ordering.bean;
 
 /**
- * 位置信息JavaBean（定位相关）
+ * 位置信息JavaBean
  */
 public class MyLocationBean {
     public String lng, lat;

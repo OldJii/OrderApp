@@ -31,6 +31,8 @@ import butterknife.OnClick;
 
 /**
  * 商家位置选择页面
+ *
+ * （todo：暂时移除）
  * Android高德地图设置中心点图标，通过逆地理编码实时获取中心点的经纬度和详细位置
  * https://blog.csdn.net/yu19931202/article/details/72765414
  */
