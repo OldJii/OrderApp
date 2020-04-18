@@ -37,11 +37,15 @@
                 android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
+<!--            todo: 暂时隐藏定位相关功能-->
+
             <TextView
                 android:id="@+id/id_roder_shop_address"
                 android:layout_marginTop="10dp"
                 tools:text="昆明市-西山区前兴路688号万达广场"
                 android:textColor="#666666"
+                android:visibility="gone"
                 android:textSize="12sp"
                 android:singleLine="true"
                 android:ellipsize="end"
@@ -57,12 +61,16 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="150dp">
+
+<!--            todo: 暂时隐藏定位相关功能-->
+
             <TextView
                 android:id="@+id/id_order_daohan_tv"
                 android:drawableTop="@mipmap/mclz_daohang"
                 android:text="导航"
                 android:textSize="12sp"
                 android:clickable="true"
+                android:visibility="gone"
                 android:drawablePadding="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
