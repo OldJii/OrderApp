@@ -7,5 +7,6 @@ import cn.bmob.v3.BmobObject;
  */
 
 public class OpinionBean extends BmobObject {
-    public String number, msg;
+    public String number;
+    public String msg;
 }

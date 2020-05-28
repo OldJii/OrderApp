@@ -10,6 +10,11 @@ import cn.bmob.v3.BmobObject;
 
 public class AddressBean extends BmobObject implements Serializable {
     public String userId;
-    public String name, mobile, province, city, area, detailAddress;
+    public String name;
+    public String mobile;
+    public String province;
+    public String city;
+    public String area;
+    public String detailAddress;
 
 }

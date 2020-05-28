@@ -158,7 +158,7 @@ public class UserPage extends FrameLayout {
     private void loginCheck(Class atyClasss) {
         int loginState = MySharePreference.getCurrentLoginState();
         if (loginState == Constant.STATE_UN_LOING) {
-            SelectDialog.show(mainActivity, "提示", "请选择登录类型", "会员登录", new DialogInterface.OnClickListener() {
+            SelectDialog.show(mainActivity, "提示", "请选择登录类型", "用户登录", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     Intent intent = new Intent(mainActivity, UserLoginActivity.class);

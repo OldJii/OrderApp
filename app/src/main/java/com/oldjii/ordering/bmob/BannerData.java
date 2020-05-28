@@ -10,7 +10,7 @@ public class BannerData extends BmobObject {
     private String img;//图片地址
     private String url;//跳转链接
     public int type;//链接跳转类型（可自行设计）
-    public int sort;//排序 数字越大越在前
+    public int sort;//优先级
     public boolean isShow = true;//是否在App端显示,默认true
 
     public String getImg() {

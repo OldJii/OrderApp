@@ -6,13 +6,11 @@ android {
         signingconfig {
             keyAlias 'mt'
             keyPassword 'android'
-//            storeFile file('E:/mt.jks')
             storePassword 'android'
         }
     }
     compileOptions{
         compileOptions {
-            //加入下面这两句就好了
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
         }
@@ -156,6 +154,8 @@ dependencies {
 
     implementation 'com.squareup.okio:okio:2.1.0'
     implementation 'com.google.code.gson:gson:2.8.5'
+
+    //OkHttp
     implementation 'com.squareup.okhttp3:okhttp:3.12.0'
     implementation files('libs/uk-co-senab-photoview.jar')
     implementation files('libs/nineoldandroids-2.4.0.jar')

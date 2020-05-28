@@ -43,8 +43,7 @@ public class MyApplication extends MultiDexApplication {
         super.onCreate();
 
         // 第一：初始化BmobSDK
-        Bmob.initialize(this, "a37683ebddc1db4e0e0d3105c5a40dcd");
-//        Bmob.initialize(this, "604cc21b4a8884509a0bf1b7995d8135");
+        Bmob.initialize(this, "b6cb1b9e173b0c2e9c2e6fb595ed9631");
 
         MySharePreference.init(this);
         context = getApplicationContext();

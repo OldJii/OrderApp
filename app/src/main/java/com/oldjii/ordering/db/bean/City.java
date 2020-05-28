@@ -1,7 +1,9 @@
 package com.oldjii.ordering.db.bean;
 
 public class City {
-    public int province_id, city_id, code;
+    public int province_id;
+    public int city_id;
+    public int code;
     public String name;
 
     public City(int city_id, int code, String name) {

@@ -113,7 +113,7 @@
                     </LinearLayout>
                     <com.flyco.roundview.RoundTextView
                         android:id="@+id/id_commit_comment_tv"
-                        android:text="提交评论"
+                        android:text="提交评价"
                         android:textSize="10sp"
                         android:clickable="true"
                         android:textColor="@color/color_pink_red"

@@ -8,7 +8,7 @@ import cn.bmob.v3.BmobObject;
  * 注：此表在后台手动添加
  */
 public class ShopCateBean extends BmobObject {
-    public String name;
+    public String name;//商家分类名称
 
     public ShopCateBean(String name) {
         this.name = name;

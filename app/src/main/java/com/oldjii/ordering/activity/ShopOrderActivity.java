@@ -28,7 +28,8 @@ public class ShopOrderActivity extends BaseActivity {
     SlidingTabLayout slidingTabLayout;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
-    private String[] titles = {"待接单", "进行中", "已完成", "退款/售后"};
+//    private String[] titles = {"待接单", "进行中", "已完成", "退款/售后"};
+    private String[] titles = {"待接单", "进行中", "已完成"};
     private VpPageAdapter adapter;
 
     @Override

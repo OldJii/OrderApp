@@ -7,9 +7,9 @@ import cn.bmob.v3.BmobObject;
  */
 
 public class OrderBean extends BmobObject {
-    public String shopId;
-    public String userId;
-    public String orderArray;
+    public String shopId;//商家id
+    public String userId;//用户id
+    public String orderArray;//订单详情
     public Integer state;//订单状态-明细见Constant类
 
     public String shopLogo;//商家logo
@@ -17,7 +17,7 @@ public class OrderBean extends BmobObject {
     public String userName;//顾客名字
     public String userLogo;//顾客logo
     public String orderNumber;//订单编号
-    public String totalPrice;
+    public String totalPrice;//总价
     public String payType;//支付方式 微信vs支付宝
     public Integer total;
     public String remarks;//备注

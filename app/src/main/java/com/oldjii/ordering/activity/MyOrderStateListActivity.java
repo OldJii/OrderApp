@@ -26,7 +26,7 @@ public class MyOrderStateListActivity extends BaseActivity {
     SlidingTabLayout slidingTabLayout;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
-    private String[] titles = {"全部", "待付款", "待使用", "待评价", "退款/售后"};
+    private String[] titles = {"全部", "待付款", "待使用", "待评价"};
     int allState = -1;//全部
 
     @Override

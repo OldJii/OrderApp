@@ -7,7 +7,9 @@ import cn.bmob.v3.BmobObject;
  */
 
 public class CommentBean extends BmobObject {
-    public String shopId, orderId, userId;
+    public String shopId;//商家id
+    public String orderId;//订单id
+    public String userId;//用户id
     public String content;//内容
     public String imgs;//图片
     public String score;//评分
