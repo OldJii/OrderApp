@@ -54,13 +54,16 @@ public class AboutOurActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        //StatusBarUtil 状态栏工具类
         StatusBarUtil.setTranslucentForImageView(this, 0, null);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             CollapsingToolbarLayout.LayoutParams lp = (CollapsingToolbarLayout.LayoutParams) toolbar.getLayoutParams();
             lp.height = lp.height + UIUtils.getStateBarHeight();
             toolbar.setPadding(0, UIUtils.getStateBarHeight(), 0, 0);
             toolbar.setLayoutParams(lp);
         }
+
         //init logo,app name,app version name
         AppInfoManagerUtils appInfoManagerUtils = new AppInfoManagerUtils(this);
         appLogoIv.setImageDrawable(appInfoManagerUtils.getAppLogo());
@@ -83,6 +86,7 @@ public class AboutOurActivity extends BaseActivity {
 //        });
     }
 
+//    butterknife
     @OnClick({R.id.user_info_ll, R.id.yjfk_ll, R.id.clear_cache_ll})
     void click(View view) {
         switch (view.getId()) {
